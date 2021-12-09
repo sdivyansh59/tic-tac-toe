@@ -2,23 +2,32 @@
 // update  2d stte array
 
 const updateArray=(r,c,arr,turn)=>{
-     let newArr=[]
-     arr.map((row,rowIndex)=>{
-         let a=[]
+   
+    
+  let newArr= arr.map((row,rowIndex)=>{
+        
         if(rowIndex===r){
-            row.map((val,valIndex)=>{
+               let a=[]
+           a= row.map((val,valIndex)=>{
                  if(valIndex===c){
-                      a.push(turn)
+                     // a.push(turn)
+                     return turn
                  }else{
-                     a.push(val)
+                    // a.push(val)
+                    return val
                  }
             })
+            return a
         }else{
-            a=[...row]
+           // a=[...row]
+           return row
         }
-      newArr.push(a)
+     /// newArr.push(a)
      })
-    console.log(newArr)
+
+  //  console.log(newArr)
+     //console.log("inside update function ")
+   
      return newArr
 }
 

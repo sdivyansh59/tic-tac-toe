@@ -4,6 +4,8 @@ import Card from './components/Card';
 import checkWin from './checkWin';
 import resetGame from './reset';
 import updateArray from './update'
+//import Test from './components/Test'
+
 
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
   const [turn,setTurn]=useState(1)
 
 
-  const clickedFunction=(id)=>{
+  const clickedFunction= (id)=>{
     //
     console.log(`${id} btn clicked`);
     // check if it is already cicked?
@@ -27,22 +29,30 @@ function App() {
     
     if(arr[row][col]==='*'){
 
-      //arr[row][col]= turn==1 ? 1  : 0
-       setArr(updateArray(row,col,arr,turn)) 
+     // arr[row][col]= turn==1 ? '1'  : '0'
 
-     // setArr()
+       let t=turn===1 ? '1'  : '0'
+       setArr((prev)=>updateArray(row,col,prev,t) ) 
+      
+     // console.log("after update ")
+
      // checkWin(arr)? console.log(`${turn} win the Game`)  : (console.log("no one win.."))
-     if(checkWin(arr)){
-       console.log("inside check win")
-       let result =window.confirm(`${turn} WIN THE GAME`)
-       if(result){
-         resetGame(turn,arr,setTurn,setArr)
-       }
-     }
+
+    // Doubt : This checkWin fun is taking previous state value
+              
+              if(checkWin(arr)){
+              console.log("inside check win")
+              let t2= turn===1 ? 0: 1
+              let result =window.confirm(` Player ${t2} WIN THE GAME`)
+              if(result){
+              resetGame(turn,arr,setTurn,setArr)
+                 }
+              }
 
       setTurn((prev)=>( prev===1 ? prev=0 : prev=1))
-       
     }
+
+
   }
 
 
@@ -58,16 +68,15 @@ function App() {
 
   return (
     <div className="App">
-      <h2 > {`${turn}  Turn`} </h2>
+      <h2 > {`Player ${turn}  Turn`} </h2>
       <div className='grid-container'>
         {board}   
       </div>
       <button type="reset"  onClick={ ()=>resetGame(turn,arr,setTurn,setArr)}>Reset Game</button>
-      
+     
     </div>
   );
 }
-
 
 
 export default App ;

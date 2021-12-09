@@ -2,7 +2,7 @@
 
  const checkWin= (arr)=>{
    // look horizontal 
-   console.log(arr,"indise check win function ")
+  // console.log(arr,"indise check win function ")
    let ans=false
 
 // check vertical
